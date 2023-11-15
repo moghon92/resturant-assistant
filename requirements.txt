@@ -4,3 +4,4 @@ openai
 tiktoken
 faiss-cpu
 regex
+numexpr
