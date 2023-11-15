@@ -1,0 +1,6 @@
+langchain
+streamlit
+openai
+tiktoken
+faiss-cpu
+regex
