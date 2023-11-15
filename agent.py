@@ -30,7 +30,6 @@ import json
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
-os.environ["OPENAI_API_KEY"] = "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"
 Global_order = []
 
 def pre_process_menu():
@@ -154,7 +153,9 @@ def setup_agent(tools, llm):
     return agent_executor
 
 
-def run_agent(user_msg, chat_history, stream_handler):
+def run_agent(user_msg, chat_history, stream_handler, openai_api_key):
+    os.environ["OPENAI_API_KEY"] = openai_api_key
+
     llm = ChatOpenAI(
         model='gpt-3.5-turbo',
         temperature=0.0,
