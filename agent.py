@@ -164,7 +164,7 @@ def run_agent(user_msg, chat_history, customer_order, stream_handler, openai_api
     os.environ["OPENAI_API_KEY"] = openai_api_key
 
     llm = ChatOpenAI(
-        model='gpt-4',#3.5-turbo',
+        model='gpt-4-0613',#3.5-turbo',
         temperature=0.0,
         streaming=True,
         request_timeout=10,
