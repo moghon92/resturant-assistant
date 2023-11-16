@@ -13,7 +13,8 @@ class StreamHandler(BaseCallbackHandler):
 
 def main():
     # Page title
-
+    if 'customer_order' not in st.session_state:
+        st.session_state.customer_order = []
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
 
@@ -28,10 +29,17 @@ def main():
             with st.spinner('Calculating...'):
                 chat_box = st.empty()
                 stream_handler = StreamHandler(chat_box)
-                response = run_agent(user_msg, st.session_state.chat_history, stream_handler, openai_api_key)
+                response = run_agent(
+                    user_msg,
+                    st.session_state.chat_history,
+                    st.session_state.customer_order,
+                    stream_handler,
+                    openai_api_key
+                )
                 # st.markdown(response['output'])
                 if len(response['updated_chat_history']) > 6:
                     st.session_state.chat_history = response['updated_chat_history'][-6:]
-
+    st.subheader('Order so far:')
+    st.markdown('\n, '.join(st.session_state.customer_order))
 if __name__ == '__main__':
     main()
