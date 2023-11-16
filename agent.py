@@ -110,7 +110,7 @@ def define_tools(retriever, menu_items, customer_order, llm):
             description="useful for when you need to answer questions about math (add, subtract,..) only accepts numbers as inputs (e.g. item prices)",
     )
 
-    return [ret_tool, calc_tool, sample_menu, save_order, get_orders_so_far]
+    return [ret_tool, calc_tool, save_order, get_orders_so_far]
 
 
 def setup_agent(tools, llm):
@@ -122,7 +122,7 @@ def setup_agent(tools, llm):
                 "system",
                  "You are a helpful resturant waiter. You suck at maths, use the calculator tool instead. Your role is to help guide the guest to complete an order. "
                 "Feel free to use any tools. Give short answers and be super friendly and funny. "
-                "You can also use sample_menu tool to give recommendations only if the guest is not sure what they want yet. "
+                "You can also use search_menu tool to give recommendations only if the guest is not sure what they want yet. "
                 "Whenever the guest orders an item, follow the following steps in order:\n"
                 "1- check if that item exists in the menu using the search_menu tool.\n"
                 "2. If the item does not exist, then tell the guest 'sorry this is not an item on the menu'."
